@@ -126,6 +126,7 @@ Education: 1 = Less than high school, 2 = High school equivalent, 3 = More than 
 
 ```{r}
 ge_table = full_df |>
+  distinct(seqn, sex, education) |>
   group_by(sex, education) |>
   count() |> 
   mutate(sex = recode(sex, `1` = "Male", `2` = "Female"), 
@@ -139,7 +140,7 @@ knitr::kable(ge_table, format = "html")
 
 To make a table that counts male and female in each educational category, I first grouped them by their category and counted the numbers.Then, recoded their numbers to avoid mistakes. Then, made it wider to be reader-friendly.
 
-According to the table, the number of male and female in each educational category is not that different except for the "High school equivalent" category. There are about 20000 more male in the category compared to females.
+According to the table, the number of male and female in each educational category is not that different except for the "High school equivalent" category. There are about 10 more male in the category compared to females.
 
 ```{r message = FALSE}
 print(
