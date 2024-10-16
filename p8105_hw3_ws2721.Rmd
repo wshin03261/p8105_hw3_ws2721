@@ -111,7 +111,7 @@ print(sum(is.na(demo)))
 ```
 
 ```{r}
-full_df = merge(accel, demo, by = "seqn") |> 
+full_df = right_join(accel, demo, by = "seqn") |> 
   pivot_longer(cols = min1:min1440, names_to = "min", names_prefix = "min",
                values_to = "MIMS") |> 
   mutate(min = as.integer(min))
