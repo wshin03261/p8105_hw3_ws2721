@@ -13,6 +13,7 @@ library(dplyr)
 library(knitr)
 library(ggridges)
 library(patchwork)
+library(janitor)
 library(p8105.datasets)
 data("ny_noaa")
 ```
@@ -255,7 +256,8 @@ The data shows the usage of the citi bike, what type of bike was used for in wha
 rides = citi_bike |> 
   group_by(month, year, member_casual) |> 
   summarise(total_rides = n()) |> 
-  spread(member_casual, total_rides, fill = 0)
+  spread(member_casual, total_rides, fill = 0) |> 
+  adorn_totals("row")
 
 colnames(rides) <- c("Year", "Month", "Citi_Bike_Members", "Casual_Riders")
 
